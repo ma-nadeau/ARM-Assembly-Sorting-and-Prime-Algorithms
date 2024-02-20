@@ -17,24 +17,27 @@ stop:
 
 pell:
 // your code starts here
-    PUSH {LR} // Push registers used for recursion onto the stack
-
+    //PUSH {LR} // Push registers used for recursion onto the stack
+    
     CMP  A1, #2 // compares A1 (n) == immediate 2
     BEQ base_case1 // If equal, go to base_case1
 
-    CMP A1, #0 // compares A1 (n) =  immediate 0
+    CMP A1, #1 // compares A1 (n) =  immediate 0
     BEQ base_case2 // If equal, go to base_case2
 
     // 2* pell(n-1)
+    MOV R10, A1
+
+recursive_case:
 
     SUB A1, A1, #1 // A2 (n - 1) = A1 (n) - 1 
     BL pell // recursive -> pell(n-1)
 
-    // !TODO: Add saving
     PUSH {A1, LR} // Saves A1 on the stack
 
     // MOV A2, A1 // resets A1 to n  || A1 = A2 (n)
 
+    MOV A1, R10
     // pell(n-2)
     SUB A3, A1, #2   // A3 (n-2) = A1 (n) - 2
     BL pell          // recursive call for pell(n-2)
