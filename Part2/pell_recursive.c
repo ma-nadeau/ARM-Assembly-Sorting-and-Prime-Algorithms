@@ -1,5 +1,5 @@
 #include <stdio.h>
-/*int pell(int n)
+int pell(int n)
 {
     if (n == 2)
         return 1;
@@ -7,8 +7,8 @@
         return 0;
     return 2 * pell(n - 1) + pell(n - 2);
 } // pell
-*/
-int pell(int n)
+
+/*int pell(int n)
 {
     if (n <= 2)
         return n;
@@ -22,7 +22,7 @@ int pell(int n)
         b = c;
     }
     return b;
-}
+}*/
 int main() {
     int n;
     printf("Enter the value of n: ");
