@@ -1,9 +1,9 @@
 .global _start
 
 
-Stuff:		.byte 0,1,2 // input array
-			.space 1	// to align next word
-N: 			.word	3	// number of elements in Stuff
+Stuff:		.byte 3,1,-12,-8 // input array
+			//.space 1	// to align next word
+N: 			.word	4	// number of elements in Stuff
 Sorted:		.space 3	// (optional) sorted output
 			.space 1	// to align next word
 
@@ -62,7 +62,7 @@ loop2_cont:
 	ADD V2, V2, #1 			// V2 (j+1) = A2 (j) + 1
 
 loop1_cont:
-	CMP A4, #0				
+	CMP A4, #0
 	BEQ end_loop				
 	ADD V1, V1, #1 			// V1 (i+1) = V1 (i) + 1
 	B loop1					// branch back to loop1
@@ -70,4 +70,3 @@ loop1_cont:
 end_loop:
 	POP {V1-V7, LR}
 	BX LR
-
