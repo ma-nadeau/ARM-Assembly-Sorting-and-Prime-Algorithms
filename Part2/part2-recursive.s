@@ -17,60 +17,33 @@ stop:
 
 pell:
 // your code starts here
-    //PUSH {LR} // Push registers used for recursion onto the stack
-    
-    CMP  A1, #2 // compares A1 (n) == immediate 2
-    BEQ base_case1 // If equal, go to base_case1
+    PUSH {LR}                   // Save the return address
 
-    CMP A1, #1 // compares A1 (n) =  immediate 0
-    BEQ base_case2 // If equal, go to base_case2
-
-    // 2* pell(n-1)
-    MOV R10, A1
+base_case:
+    CMP  A1, #2                 // compares A1 (n) with immediate 2
+    BGT recursive_case          // If A1 (n) > 2 , go to recursive
+    B end_pell
 
 recursive_case:
 
-    SUB A1, A1, #1 // A2 (n - 1) = A1 (n) - 1 
-    BL pell // recursive -> pell(n-1)
-
-    PUSH {A1, LR} // Saves A1 on the stack
-
-    // MOV A2, A1 // resets A1 to n  || A1 = A2 (n)
-
-    MOV A1, R10
-    // pell(n-2)
-    SUB A3, A1, #2   // A3 (n-2) = A1 (n) - 2
-    BL pell          // recursive call for pell(n-2)
-
+    PUSH {A1, LR}               // Push current value of N to the stack
     
-    POP {A1, LR} // Restore pell(n-1) from the stack
-    // Calculate pell(n) = pell(n-1) + 2 * pell(n-2)
-    ADD A1, A3, A1     // A1 = pell(n-1) + pell(n-2)
-    LSL A1, A1, #1     // A1 = 2 * (pell(n-1) + pell(n-2))
+    // Pell(n-1)
+    SUB A1, A1, #1              // A1 (n-1) = A (n) - 1
+    BL pell                     // Recursive Case1 ( Pell(n-1) )
 
-    // Restore LR from the stack
-    POP {LR}
+    POP {A2, LR}                // A2 now contains the original value of n
+    PUSH {A1, LR}               // Push  return value of BL pell to the stack
+    
+    // Pell(n-2)                
+    SUB A1, A2, #2              // A1 (n-2) = A2 (n) - 2
+    BL pell                     // Recursive Case1 ( Pell(n-2)) 
 
-    // Return to the calling function
-    BX LR
+    POP {A2, LR}                 // Put Pell(n-1) into A2
 
-// if (n == 2)
-base_case1: 
-    MOV A1, #1 // R0 = 1
-    B end_pell       // Go to end of pell function
-
-    // BX LR // return 1 || PC <-- LR
-
-// if (n == 1)
-base_case2: 
-    MOV A1, #0 // R0 = 0
-    //BX LR // return 0 || PC <-- LR
-    B end_pell
+    LSL A2, A2, #1              // 2 * Pell (n-1)
+    
+    ADD A1, A1, A2              // return 2 * pell(n - 1) + pell(n - 2);
 
 end_pell:
-    // Return to the calling function
-    BX LR
-
-
-
-
+    pop {PC}
