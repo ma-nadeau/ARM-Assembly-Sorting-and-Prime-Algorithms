@@ -16,6 +16,7 @@ stop:
     // post- A1: Pell number P = pell(n)
 
 pell:
+    PUSH {V1,V2, LR}
     CMP A1, #2                  // Compare A1 (N) with Imm 2
     BLE end_pell                // return A1 (N) when N <= 2  
 
@@ -44,5 +45,5 @@ add:
     B loop                      // Branch back to loop
 
 end_pell:
+    POP {V1,V2, LR}
     BX LR                       // Return
-    //TODO: figure why it won't save ot memory
