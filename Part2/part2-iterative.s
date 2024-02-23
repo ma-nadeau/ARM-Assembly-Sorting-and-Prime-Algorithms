@@ -15,8 +15,8 @@ stop:
     // pre-- A1: Pell number index i to calculate, n >= 0
     // post- A1: Pell number P = pell(n)
 
-pell:
-    PUSH {V1,V2, LR}
+pell:                           // Iterative Pell Algorithm
+    PUSH {V1,V2, LR}            // Pushes V1,V2,LR to the stack
     CMP A1, #2                  // Compare A1 (N) with Imm 2
     BLE end_pell                // return A1 (N) when N <= 2  
 
@@ -26,12 +26,12 @@ pell:
     MOV V1, A1                  // Initialize V1 = N ==> A1 = SUM = 2 * P(n-1) + P(n-2) 
     MOV A1, #0                  // Set the SUM = 0
 
-loop:    
+loop:                           // for (i = 3; i <= n; i++)
     CMP A4, V1                  // Compare A4 (i) with V1 (n)
     BGT end_pell                // if i > n stop the loop
 
-add: 
-    //c = 2 * P( n - 1 ) + a ( P(n-2) );
+    //c = 2 * P( n - 1 ) + a ( P(n-2) ); 
+    
     MOV V2, A3                  // Save A3 into V2
     LSL A3, A3, #1              // A3 = 2 * A3 
     ADD A3, A2, A3              // A3 (SUM) = A2 + 2 * A1 
@@ -44,6 +44,6 @@ add:
 
     B loop                      // Branch back to loop
 
-end_pell:
-    POP {V1,V2, LR}
+end_pell:                       // End Pell
+    POP {V1,V2, LR}             // Restors V1,V2,LR
     BX LR                       // Return

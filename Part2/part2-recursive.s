@@ -15,16 +15,16 @@ stop:
     // pre-- A1: Pell number index i to calculate, n >= 0
     // post- A1: Pell number P = pell(n)
 
-pell:
-// your code starts here
+pell:                           // Recursive Pell Algorithm
+
     PUSH {LR}                   // Save the return address
 
-base_case:
+base_case:                      // if n <= 2
     CMP  A1, #2                 // compares A1 (n) with immediate 2
     BGT recursive_case          // If A1 (n) > 2 , go to recursive
-    B end_pell
+    B end_pell                  // Branch back end_pell
 
-recursive_case:
+recursive_case:                 //  if n > 2
 
     PUSH {A1, LR}               // Push current value of N to the stack
     
@@ -35,15 +35,15 @@ recursive_case:
     POP {A2, LR}                // A2 now contains the original value of n
     PUSH {A1, LR}               // Push  return value of BL pell to the stack
     
-    // Pell(n-2)                
+    // Pell(n-2) 
     SUB A1, A2, #2              // A1 (n-2) = A2 (n) - 2
     BL pell                     // Recursive Case1 ( Pell(n-2)) 
 
-    POP {A2, LR}                 // Put Pell(n-1) into A2
+    POP {A2, LR}                // Put Pell(n-1) into A2
 
     LSL A2, A2, #1              // 2 * Pell (n-1)
     
     ADD A1, A1, A2              // return 2 * pell(n - 1) + pell(n - 2);
 
-end_pell:
-    pop {PC}
+end_pell:                       // end pell algorithm
+    pop {PC}                    // Restors PC
