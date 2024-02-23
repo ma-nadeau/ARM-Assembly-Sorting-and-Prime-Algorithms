@@ -24,7 +24,7 @@ base_case:                      // if n <= 2
     BGT recursive_case          // If A1 (n) > 2 , go to recursive
     B end_pell                  // Branch back end_pell
 
-recursive_case:                 //  if n > 2
+recursive_case:                 // if n > 2
 
     PUSH {A1, LR}               // Push current value of N to the stack
     
