@@ -20,7 +20,7 @@ stop:
 // pre-- A2: Number of elements in array
 // post- A1: Address of sorted array
 sort:
-	PUSH {V1-V5, LR} 		
+	PUSH {V1-V5, LR} 		//Push {V1-V5, LR} to the stack
 
 	MOV V1, #1				// V1 (i) = 1	
 	
@@ -56,5 +56,5 @@ loop1_cont:
 	B loop1					// branch back to loop1
 
 end_loop:
-	POP {V1-V5, LR}
-	BX LR
+	POP {V1-V5, LR}			// Reset {V1-V5, LR} from the stack
+	BX LR					// Return

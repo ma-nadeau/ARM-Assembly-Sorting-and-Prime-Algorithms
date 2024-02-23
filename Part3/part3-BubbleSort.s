@@ -26,6 +26,7 @@ sort:
 	MOV V1, #0				// V1 (i) = 0				
 	
 loop1:
+
 	SUB A3, A2, #1 			// A3 (n-1) = A2 (n) - 1
 	CMP V1, A3 				// Compare V1 (i) and A3 (n-1)
 	BGE end_loop			//End Loop if V1 (i) >= A3 (n-1)
@@ -33,6 +34,7 @@ loop1:
 	MOV V2, #0				// V2 (j) = 0
 
 loop2:
+
 	SUB V3, A3, V1			// V3 ( n-i-1 ) = A3 (n - 1) - V1 (i) 
 	CMP V2, V3 				// Compare V2 (j) and V3 ( n - i - 1)
 	BGE loop1_cont			// Branch back to loop1_cont if V2 (j) >= V3 ( n - i - 1)
