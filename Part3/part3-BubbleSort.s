@@ -1,7 +1,7 @@
 .global _start
 
 
-Stuff:		.byte 3,1,-12,-8 // input array
+Stuff:		.byte 0,1,2 // input array
 			//.space 1	// to align next word
 N: 			.word	4	// number of elements in Stuff
 Sorted:		.space 3	// (optional) sorted output
