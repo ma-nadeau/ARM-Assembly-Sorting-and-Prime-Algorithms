@@ -47,6 +47,7 @@ if:
 	CMP V4, V6				// Compare V4 (arr[j]) and V6 (arr[j+1])
 	BLE loop2_cont			// if V4 (arr[j]) <= V4 (arr[j+1]) branch to loop1_cont
 
+swap: 
 	MOV V7, V4 				// tmp of arr[j]
 	STRB V6, [A1, V2]		// Stores V6 (arr[j+1]) into arr[j]
 	STRB V7, [A1, V5]		// Stores V7 (arr[j]) into arr[j+1]
