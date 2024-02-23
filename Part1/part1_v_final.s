@@ -4,12 +4,12 @@ Numbers:	.short 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 Primes:		.space 24
 
 _start: 
-	MOV R1, #0 // R1: num = 0
-	MOV R2, #0 // R2: pri = 0
-	MOV R3, #1 // R3: prime = 1
-	MOV R4, #0 // R4: done = 0 (false)
-	LDR R5, N // R5 = N (12)
-	// LDR R5, [R5] // R5 = 12
+
+	MOV R1, #0 						// R1: num = 0
+	MOV R2, #0 						// R2: pri = 0
+	MOV R3, #1 						// R3: prime = 1
+	MOV R4, #0						// R4: done = 0 (false)
+	LDR R5, N 						// R5 = N (12)
 
 loop1: 								// while(!done)
 

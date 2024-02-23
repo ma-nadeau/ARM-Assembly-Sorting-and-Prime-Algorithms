@@ -20,8 +20,8 @@ stop:
 // pre-- A2: Number of elements in array
 // post- A1: Address of sorted array
 sort:
-	PUSH {V1-V5, LR} 		//Push {V1-V5, LR} to the stack
 
+	PUSH {V1-V5, LR} 		//Push {V1-V5, LR} to the stack
 	MOV V1, #1				// V1 (i) = 1	
 	
 loop1:
