@@ -34,7 +34,7 @@ partition:
 
 loop1:
 
-    LDRSB V4, [A1] 		// key (V4) = arr[j]
+    LDRSB V4, [A2] 		    // key (V4) = arr[j]
     MOV V2, A2              // tmp low
     MOV V3, A3              // tmp high
     
@@ -45,7 +45,7 @@ loop1:
 
 
 endloop1:
-
+    
 	
 	CMP V1, A3 				// Compare V1 (i) and A3 (n-1)
 	BGE end_loop			//End Loop if V1 (i) >= A3 (n-1)
